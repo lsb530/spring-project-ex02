@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/mvc https://www.springframework.org/schema/mvc/spring-mvc.xsd http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd">
+
+    <mvc:annotation-driven />
+<!--    <context:component-scan base-package="org.example.controller" />-->
+<!--    <context:component-scan base-package="org.example.exception" />-->
+    <context:component-scan base-package="org.zerock.controller"/>
+<!--    <context:component-scan base-package="org.codechobo.controller"/>-->
+    <mvc:resources mapping="/resources/**" location="/resources/" />
+    <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <property name="prefix" value="/WEB-INF/views/" />
+        <property name="suffix" value=".jsp" />
+    </bean>
+    <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+        <property name="defaultEncoding" value="utf-8" />
+        <!-- 1024 * 1024 * 10 bytes 10MB -->
+        <property name="maxUploadSize" value="104857560" />
+        <!-- 1024 * 1024 * 2 bytes 2MB -->
+        <property name="maxUploadSizePerFile" value="2097152" />
+        <property name="uploadTempDir" value="file:/C:/upload/tmp" />
+        <property name="maxInMemorySize" value="10485756" />
+    </bean>
+</beans>

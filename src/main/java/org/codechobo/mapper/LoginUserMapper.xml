@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.codechobo.mapper.LoginUserMapper">
+    <select id="getList" resultType="org.codechobo.domain.LoginUser">
+        <![CDATA[
+        select * from LOGINUSER where uno > 0
+        ]]>
+    </select>
+
+    <insert id="insert">
+        insert into LOGINUSER (uno,id,pw,salt)
+        values (SEQ_USER.nextval, #{id}, #{pw}, #{salt} )
+    </insert>
+
+
+    <select id="read" resultType="org.codechobo.domain.LoginUser">
+        select * from LOGINUSER where id = #{id}
+    </select>
+
+    <delete id="delete">
+        delete from LOGINUSER where id = #{id}
+    </delete>
+
+    <update id="update">
+        update LOGINUSER set pw=#{pw}, salt=#{salt} where id=#{id}
+    </update>
+</mapper>
